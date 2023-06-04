@@ -18,13 +18,8 @@
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
-
-
-
-    <script type="text/javascript" src="http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=iNEsUnv9KDcpBMMlBPnT-84NATMO1t9ExldCfWQc3wMfSYSujOQtb4mmFuBd_2y0swezm9fR464xfbWH7TbjUvwZpwwcigaYzpMxd6MEGxU" charset="UTF-8"></script>
 </head>
 
 <body class="">
@@ -40,11 +35,14 @@
         <div class="navbar-wrapper  ">
             <div class="navbar-content scroll-div ">
 
-                <div class="">
+                <div class="" id="auth">
                     <div class="main-menu-header">
                         <img class="img-radius" src="assets/images/user/img-avatar-3.jpg" alt="User-Profile-Image">
                         <div class="user-details">
-                            <div id="more-details">Ahmed Abdellatif <i class="fa fa-caret-down"></i></div>
+                            <div id="more-details">
+                                <span id="auth-username"></span>
+                                <i class="fa fa-caret-down"></i>
+                            </div>
                         </div>
                     </div>
                     <div class="collapse" id="nav-user-link">
@@ -219,7 +217,7 @@
                             <ul class="pro-body">
                                 <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
                                 <li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-log-out"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -1010,6 +1008,7 @@
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
     <script src="assets/js/menu-setting.min.js"></script>
+    <script src="assets/js/pages/home.js"></script>
 
     <!-- Apex Chart -->
     <script src="assets/js/plugins/apexcharts.min.js"></script>

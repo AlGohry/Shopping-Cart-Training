@@ -47,9 +47,22 @@
                     </div>
                     <div class="collapse" id="nav-user-link">
                         <ul class="list-inline">
-                            <li class="list-inline-item"><a href="user-profile.html" data-toggle="tooltip" title="View Profile"><i class="feather icon-user"></i></a></li>
-                            <li class="list-inline-item"><a href="email_inbox.html"><i class="feather icon-mail" data-toggle="tooltip" title="Messages"></i><small class="badge badge-pill badge-primary">5</small></a></li>
-                            <li class="list-inline-item"><a href="auth-signin.html" data-toggle="tooltip" title="Logout" class="text-danger"><i class="feather icon-power"></i></a></li>
+                            <li class="list-inline-item">
+                                <a href="user-profile.html" data-toggle="tooltip" title="View Profile">
+                                    <i class="feather icon-user"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="email_inbox.html">
+                                    <i class="feather icon-mail" data-toggle="tooltip" title="Messages"></i>
+                                    <small class="badge badge-pill badge-primary">5</small>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="auth-signin.html" data-toggle="tooltip" title="Logout" id="logout" class="text-danger">
+                                    <i class="feather icon-power"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +115,7 @@
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
                         <ul class="pcoded-submenu">
                             <li><a href="auth-signup.html" target="_blank">Sign up</a></li>
-                            <li><a href="auth-signin.html" target="_blank">Sign in</a></li>
+                            <li><a href="auth-signin.html" id="logout" target="_blank">Sign in</a></li>
                             <li><a href="auth-reset-password.html" target="_blank">Reset password</a></li>
                         </ul>
                     </li>
@@ -210,14 +223,14 @@
                             <div class="pro-head">
                                 <img src="assets/images/user/img-avatar-3.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span>Ahmed Abdellatif</span>
-                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                <a href="auth-signin.html" class="dud-logout" title="Logout" id="logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
                                 <li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
                                 <li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-log-out"></i> Logout</a></li>
+                                <li><a href="auth-signin.html" class="dropdown-item" id="logout"><i class="feather icon-log-out"></i> Logout</a></li>
                             </ul>
                         </div>
                     </div>

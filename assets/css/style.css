@@ -10358,6 +10358,9 @@ a.text-dark:focus {
     color: inherit !important;
 }
 
+.hidden{
+    display: none !important;
+}
 .visible {
     visibility: visible !important;
 }

@@ -20021,6 +20021,14 @@ a.badge-light-dark:hover {
     color: #d6d8d9;
 }
 
+.badge-cart{
+    position: absolute;
+    top: 8px;
+    right: 2px;
+    border-radius: 50%;
+    font-size: 9px;
+    z-index: 9;
+}
 
 /**====== Badges css end ======**/
 

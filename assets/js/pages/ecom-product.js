@@ -1,5 +1,8 @@
 "use strict";
 let productsDiv = document.getElementById("products");
+let product_name = document.querySelector(".notification .prod-name strong");
+let product_img = document.querySelector(".img.img-radius.prod-imageUrl");
+let badgeCart = document.querySelector(".badge-cart");
 let products = [
   {
     id: 1,
@@ -45,8 +48,8 @@ let products = [
 
 function drawProductsUi() {
   // debugger;
-    let productsUi = products.map((item) =>{
-        return `
+  let productsUi = products.map((item) => {
+    return `
         <tr>
           <td class="align-middle">
               <img src="${item.imageUrl}" id="prod-img" alt="prod-1-img" title="prod-1-img" class="rounded mr-3" height="48" />
@@ -79,20 +82,29 @@ function drawProductsUi() {
                 <a href="#" class="btn btn-icon btn-outline-primary hidden " title="View"><i class="feather icon-eye"></i></a>
                 <a href="#" class="btn btn-icon btn-outline-success hidden " title="Edite"><i class="feather icon-edit"></i></a>
                 <a href="#" class="btn btn-icon btn-outline-danger hidden " title="Delete"><i class="feather icon-trash-2"></i></a>
-                <a href="#" class="btn btn-icon btn-outline-warning" onclick="checkLoggedUser()" title="Add to cart"><i class="feather icon-shopping-cart"></i></a>
+                <a href="#" class="btn btn-icon btn-outline-warning" onclick="addedToCart(${item.id})" title="Add to cart"><i class="feather icon-shopping-cart"></i></a>
             </td>
         </tr>
         `
-    });
-    productsDiv.innerHTML = productsUi;
+  });
+  productsDiv.innerHTML = productsUi;
 }
 
 drawProductsUi();
 
+function addedToCart(id) {
+  let totalCart = document.querySelectorAll(".notification .prod-name strong")
+  // debugger;
+  let chooseItem = products.find((item) => item.id === id);
+  product_name.innerHTML = chooseItem.prod_name;
+  badgeCart.innerHTML = totalCart.length;
+  // product_img.innerHTML = chooseItem.imageUrl;
+}
+
 function checkLoggedUser() {
   if (localStorage.getItem("username")) {
     console.log("Adde to cart");
-  }else{
+  } else {
     console.log("User didn't log in ")
   }
 }

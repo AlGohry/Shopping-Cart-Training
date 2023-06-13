@@ -1,7 +1,7 @@
 "use strict";
 let productsDiv = document.getElementById("products");
 let product_name = document.querySelector(".notification .prod-name strong");
-let product_img = document.querySelector(".img.img-radius.prod-imageUrl");
+let product_img = document.querySelector(".media .prod-imageUrl");
 let badgeCart = document.querySelector(".badge-cart");
 let products = [
   {
@@ -43,7 +43,7 @@ let products = [
     prod_price: "$14.99",
     prod_quantity: "111",
     prod_status: "Active",
-  }
+  },
 ];
 
 function drawProductsUi() {
@@ -85,7 +85,7 @@ function drawProductsUi() {
                 <a href="#" class="btn btn-icon btn-outline-warning" onclick="addedToCart(${item.id})" title="Add to cart"><i class="feather icon-shopping-cart"></i></a>
             </td>
         </tr>
-        `
+        `;
   });
   productsDiv.innerHTML = productsUi;
 }
@@ -93,18 +93,18 @@ function drawProductsUi() {
 drawProductsUi();
 
 function addedToCart(id) {
-  let totalCart = document.querySelectorAll(".notification .prod-name strong")
+  let totalCart = document.querySelectorAll(".notification .prod-name strong");
   // debugger;
   let chooseItem = products.find((item) => item.id === id);
   product_name.innerHTML = chooseItem.prod_name;
   badgeCart.innerHTML = totalCart.length;
-  // product_img.innerHTML = chooseItem.imageUrl;
+  product_img.setAttribute("src", chooseItem.imageUrl);
 }
 
 function checkLoggedUser() {
   if (localStorage.getItem("username")) {
     console.log("Adde to cart");
   } else {
-    console.log("User didn't log in ")
+    console.log("User didn't log in ");
   }
 }

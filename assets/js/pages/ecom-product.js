@@ -6,6 +6,10 @@ let badgeCart = document.querySelector(".badge-cart");
 let cartEmptyMsg = document.getElementById("cart-empty-msg");
 let shoppingCart = document.getElementById("shopping-cart");
 let totalCart = document.querySelectorAll(".notification");
+
+// JSON.parse => String to Object
+// JSON.stringify => Object to String
+
 let products = [
   {
     id: 1,
@@ -48,12 +52,12 @@ let products = [
     prod_status: "Active",
   },
 ];
-let selected_list =[];
+let selected_list = [];
 
 function drawProductsUi() {
   // debugger;
   let productsUi = products.map((item) => {
-    return`
+    return `
         <tr>
           <td class="align-middle">
               <img src="${item.imageUrl}" id="prod-img" alt="prod-1-img" title="prod-1-img" class="rounded mr-3" height="48" />
@@ -96,14 +100,16 @@ function drawProductsUi() {
 
 drawProductsUi();
 
-function addedToCart(id) {
-  // debugger;
-  let selected_item = products.find((item) => item.id === id);
-  selected_list.push(selected_item);
-  cartEmptyMsg.style.display = "none";
+let addedItem = [];
 
-  let putProductInCart = selected_list.map((item) => {
-    return`
+function addedToCart(id) {
+  if (localStorage.getItem("username")) {
+
+    let selected_item = products.find((item) => item.id === id);
+    selected_list.push(selected_item);
+    cartEmptyMsg.style.display = "none";
+    let putProductInCart = selected_list.map((item) => {
+      return `
     <li class="notification">
       <div class="media">
         <img class="img-radius prod-imageUrl" src="${item.imageUrl}"
@@ -121,15 +127,15 @@ function addedToCart(id) {
       </div>
     </li>
     `;
-  });
-  shoppingCart.innerHTML = putProductInCart;
-  badgeCart.innerHTML = selected_list.length;
-}
+    });
+    shoppingCart.innerHTML = putProductInCart;
+    addedItem=[...addedItem, selected_item];
+    localStorage.setItem('productsInCart', JSON.stringify(addedItem));
+    badgeCart.innerHTML = selected_list.length;
 
-function checkLoggedUser() {
-  if (localStorage.getItem("username")) {
-    console.log("Adde to cart");
   } else {
-    console.log("User didn't log in ");
+
+    window.location = "auth-signin.html";
+
   }
 }

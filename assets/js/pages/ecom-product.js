@@ -3,6 +3,9 @@ let productsDiv = document.getElementById("products");
 let product_name = document.querySelector(".notification .prod-name strong");
 let product_img = document.querySelector(".media .prod-imageUrl");
 let badgeCart = document.querySelector(".badge-cart");
+let cartEmptyMsg = document.getElementById("cart-empty-msg");
+let shoppingCart = document.getElementById("shopping-cart");
+let totalCart = document.querySelectorAll(".notification");
 let products = [
   {
     id: 1,
@@ -45,11 +48,12 @@ let products = [
     prod_status: "Active",
   },
 ];
+let selected_list =[];
 
 function drawProductsUi() {
   // debugger;
   let productsUi = products.map((item) => {
-    return `
+    return`
         <tr>
           <td class="align-middle">
               <img src="${item.imageUrl}" id="prod-img" alt="prod-1-img" title="prod-1-img" class="rounded mr-3" height="48" />
@@ -93,12 +97,33 @@ function drawProductsUi() {
 drawProductsUi();
 
 function addedToCart(id) {
-  let totalCart = document.querySelectorAll(".notification .prod-name strong");
   // debugger;
-  let chooseItem = products.find((item) => item.id === id);
-  product_name.innerHTML = chooseItem.prod_name;
-  badgeCart.innerHTML = totalCart.length;
-  product_img.setAttribute("src", chooseItem.imageUrl);
+  let selected_item = products.find((item) => item.id === id);
+  selected_list.push(selected_item);
+  cartEmptyMsg.style.display = "none";
+
+  let putProductInCart = selected_list.map((item) => {
+    return`
+    <li class="notification">
+      <div class="media">
+        <img class="img-radius prod-imageUrl" src="${item.imageUrl}"
+          alt="Generic placeholder image">
+        <div class="media-body">
+          <p class="prod-name">
+            <strong>${item.prod_name}</strong>
+            <span class="n-time text-muted">
+              <i class="icon feather icon-clock m-r-10"></i>
+              10 min
+            </span>
+          </p>
+          <p>Category: ${item.prod_category}</p>
+        </div>
+      </div>
+    </li>
+    `;
+  });
+  shoppingCart.innerHTML = putProductInCart;
+  badgeCart.innerHTML = selected_list.length;
 }
 
 function checkLoggedUser() {

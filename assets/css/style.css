@@ -32940,3 +32940,14 @@ new-task label input[type=checkbox] {
 .fixed-button {
     display: none !important;
 }
+
+.cart-empty{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0px 15px;
+}

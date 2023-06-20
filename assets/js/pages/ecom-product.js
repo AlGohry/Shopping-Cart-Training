@@ -7,55 +7,10 @@ let cartEmptyMsg = document.getElementById("cart-empty-msg");
 let shoppingCart = document.getElementById("shopping-cart");
 let totalCart = document.querySelectorAll(".notification");
 
-// JSON.parse => String to Object
-// JSON.stringify => Object to String
-
-let products = [
-  {
-    id: 1,
-    imageUrl: "assets/images/product/prod-1.jpg",
-    prod_name: "Amazing Rolling Chair",
-    prod_category: "Office Chairs",
-    prod_date: "December 16, 2019",
-    prod_price: "$597.66",
-    prod_quantity: "5",
-    prod_status: "Active",
-  },
-  {
-    id: 2,
-    imageUrl: "assets/images/product/prod-2.jpg",
-    prod_name: "Minicap Dining Chair",
-    prod_category: "Wooden Chairs",
-    prod_date: "December 16, 2003",
-    prod_price: "$59",
-    prod_quantity: "90",
-    prod_status: "Deactive",
-  },
-  {
-    id: 3,
-    imageUrl: "assets/images/product/prod-3.jpg",
-    prod_name: "Marvel T-shirts",
-    prod_category: "Man cloths",
-    prod_date: "October 16, 2010",
-    prod_price: "$12.00",
-    prod_quantity: "222",
-    prod_status: "Active",
-  },
-  {
-    id: 4,
-    imageUrl: "assets/images/product/prod-4.jpg",
-    prod_name: "Lonaval jacket",
-    prod_category: "Man cloths",
-    prod_date: "October 16, 2018",
-    prod_price: "$14.99",
-    prod_quantity: "111",
-    prod_status: "Active",
-  },
-];
 let selected_list = [];
 
-function drawProductsUi() {
-  // debugger;
+// View products when opening the page 
+(function drawProductsUi() {
   let productsUi = products.map((item) => {
     return `
         <tr>
@@ -96,15 +51,14 @@ function drawProductsUi() {
         `;
   });
   productsDiv.innerHTML = productsUi;
-}
-
-drawProductsUi();
+})();
 
 let addedItem = [];
 
+// Add to Cart
 function addedToCart(id) {
+  // Check for an existing username?
   if (localStorage.getItem("username")) {
-
     let selected_item = products.find((item) => item.id === id);
     selected_list.push(selected_item);
     cartEmptyMsg.style.display = "none";
@@ -132,10 +86,40 @@ function addedToCart(id) {
     addedItem=[...addedItem, selected_item];
     localStorage.setItem('productsInCart', JSON.stringify(addedItem));
     badgeCart.innerHTML = selected_list.length;
-
   } else {
-
     window.location = "auth-signin.html";
-
   }
 }
+
+// Fill the products in the shopping cart
+(function fillProductsInCart() {
+  // debugger;
+  let productsUi = [];
+  var productsInCart = JSON.parse(localStorage.getItem("productsInCart"));
+  if (productsInCart != null) {
+    productsUi = productsInCart.map((item) => {
+      return `
+      <li class="notification">
+      <div class="media">
+        <img class="img-radius prod-imageUrl" src="${item.imageUrl}"
+          alt="Generic placeholder image">
+        <div class="media-body">
+          <p class="prod-name">
+            <strong>${item.prod_name}</strong>
+            <span class="n-time text-muted">
+              <i class="icon feather icon-clock m-r-10"></i>
+              10 min
+            </span>
+          </p>
+          <p>Category: ${item.prod_category}</p>
+        </div>
+      </div>
+    </li>
+      `;
+    });
+    shoppingCart.innerHTML = productsUi;
+    badgeCart.innerHTML = productsInCart.length;
+  } else {
+    badgeCart.innerHTML = 0;
+  }
+})();

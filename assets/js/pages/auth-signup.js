@@ -5,7 +5,7 @@ let password = document.getElementById("password");
 let regBtn = document.getElementById("signup-btn");
 
 
-//----- Registration Function
+// Registration Function
 regBtn.addEventListener("click", regFunc);
 function regFunc(e) {
     e.preventDefault();

@@ -2,17 +2,24 @@ let ProductInCart = localStorage.getItem("productsInCart");
 let cartProducts = document.getElementById("cart-products");
 let totalCart = document.getElementById("total-cart");
 let cartEmpty = document.querySelector(".cart-empty");
+let shoppingCart = document.getElementById("shopping-cart");
+let badgeCart = document.querySelector(".badge-cart");
 
+// JSON.parse => String to Object
+// JSON.stringify => Object to String
+
+// Check if there are products in the cart?
 if (ProductInCart) {
-    let items = JSON.parse(ProductInCart);
-    drawCartProductsUi(items);
-}else{
-    cartEmpty.style.display = "block";
+  let items = JSON.parse(ProductInCart);
+  drawCartProductsUi(items);
+} else {
+  cartEmpty.style.display = "block";
 }
 
+// View cart details
 function drawCartProductsUi(products) {
-    let productsUi = products.map((item) => {
-        return `
+  let productsUi = products.map((item) => {
+    return `
     <tr>
     <td>
         <div class="d-inline-block align-middle text-center">
@@ -54,7 +61,40 @@ function drawCartProductsUi(products) {
     </td>
 </tr>
         `;
-    });
-    cartProducts.innerHTML = productsUi;
-    totalCart.innerHTML = "My Cart ( " + products.length + " )";
+  });
+  cartProducts.innerHTML = productsUi;
+  totalCart.innerHTML = "My Cart ( " + products.length + " )";
 }
+
+// Fill the products in the shopping cart
+(function fillProductsInCart() {
+  // debugger;
+  let productsUi = [];
+  var productsInCart = JSON.parse(localStorage.getItem("productsInCart"));
+  if (productsInCart != null) {
+    productsUi = productsInCart.map((item) => {
+      return `
+        <li class="notification">
+        <div class="media">
+          <img class="img-radius prod-imageUrl" src="${item.imageUrl}"
+            alt="Generic placeholder image">
+          <div class="media-body">
+            <p class="prod-name">
+              <strong>${item.prod_name}</strong>
+              <span class="n-time text-muted">
+                <i class="icon feather icon-clock m-r-10"></i>
+                10 min
+              </span>
+            </p>
+            <p>Category: ${item.prod_category}</p>
+          </div>
+        </div>
+      </li>
+        `;
+    });
+    shoppingCart.innerHTML = productsUi;
+    badgeCart.innerHTML = productsInCart.length;
+  } else {
+    badgeCart.innerHTML = 0;
+  }
+})();

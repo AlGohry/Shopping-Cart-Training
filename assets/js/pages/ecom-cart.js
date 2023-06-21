@@ -17,7 +17,9 @@ if (ProductInCart) {
 }
 
 // View cart details
-function drawCartProductsUi(products) {
+function drawCartProductsUi(allProducts = []) {
+  let products =
+    JSON.parse(localStorage.getItem("productsInCart")) || allProducts;
   let productsUi = products.map((item) => {
     return `
     <tr>
@@ -49,7 +51,7 @@ function drawCartProductsUi(products) {
                     class="text-success h5">86% off</small></h4>
             <a href="#!" class="text-muted text-h-primary mb-1">Save for
                 later</a>
-            <a href="#!" class="text-muted text-h-danger m-l-10 mb-1">Remove</a>
+            <a href="#!" class="text-muted text-h-danger m-l-10 mb-1" onclick="removeFromCart(${item.id})">Remove</a>
         </div>
     </td>
     <td class="text-right">
@@ -98,3 +100,14 @@ function drawCartProductsUi(products) {
     badgeCart.innerHTML = 0;
   }
 })();
+
+// Remove from cart
+function removeFromCart(id) {
+  let productsInCart = localStorage.getItem("productsInCart");
+  if (productsInCart) {
+    let items = JSON.parse(productsInCart);
+    let filteredItems = items.filter((item) => item.id !== id);
+    localStorage.setItem("productsInCart", JSON.stringify(filteredItems));
+    drawCartProductsUi(filteredItems);
+  }
+}

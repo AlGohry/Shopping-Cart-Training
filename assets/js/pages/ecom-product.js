@@ -42,10 +42,10 @@ let selected_list = [];
                 <span class="badge badge-success" id="prod-status">${item.prod_status}</span>
             </td>
             <td class="table-action">
-                <a href="#" class="btn btn-icon btn-outline-primary hidden " title="View"><i class="feather icon-eye"></i></a>
-                <a href="#" class="btn btn-icon btn-outline-success hidden " title="Edite"><i class="feather icon-edit"></i></a>
-                <a href="#" class="btn btn-icon btn-outline-danger hidden " title="Delete"><i class="feather icon-trash-2"></i></a>
-                <a href="#" class="btn btn-icon btn-outline-warning" onclick="addedToCart(${item.id})" title="Add to cart"><i class="feather icon-shopping-cart"></i></a>
+                <button class="btn btn-icon btn-outline-primary hidden " title="View"><i class="feather icon-eye"></i></button>
+                <button class="btn btn-icon btn-outline-success hidden " title="Edite"><i class="feather icon-edit"></i></button>
+                <button class="btn btn-icon btn-outline-danger hidden " title="Delete"><i class="feather icon-trash-2"></i></button>
+                <button class="btn btn-icon btn-outline-warning" onclick="addedToCart(${item.id})" title="Add to cart"><i class="feather icon-shopping-cart"></i></button>
             </td>
         </tr>
         `;

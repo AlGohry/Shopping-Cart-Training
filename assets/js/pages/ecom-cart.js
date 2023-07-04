@@ -1,7 +1,7 @@
 let ProductInCart = localStorage.getItem("productsInCart");
 let cartProducts = document.getElementById("cart-products");
 let totalCart = document.getElementById("total-cart");
-let cartEmpty = document.querySelector(".cart-empty");
+let cartEmpty = document.getElementById("cart-empty-msg");
 let shoppingCart = document.getElementById("shopping-cart");
 let badgeCart = document.querySelector(".badge-cart");
 
@@ -109,5 +109,6 @@ function removeFromCart(id) {
     let filteredItems = items.filter((item) => item.id !== id);
     localStorage.setItem("productsInCart", JSON.stringify(filteredItems));
     drawCartProductsUi(filteredItems);
+    badgeCart.innerHTML = filteredItems.length;
   }
 }

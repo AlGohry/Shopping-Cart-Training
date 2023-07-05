@@ -6,6 +6,7 @@ let badgeCart = document.querySelector(".badge-cart");
 let cartEmptyMsg = document.getElementById("cart-empty-msg");
 let shoppingCart = document.getElementById("shopping-cart");
 let totalCart = document.querySelectorAll(".notification");
+let products = JSON.parse(localStorage.getItem('products'));
 
 let selected_list = [];
 

@@ -1,6 +1,6 @@
 "use strict";
 // Definition of products
-let products = [
+let productsDB = [
   {
     id: 1,
     imageUrl: "assets/images/product/prod-1.jpg",
@@ -42,3 +42,5 @@ let products = [
     prod_status: "Active",
   },
 ];
+
+localStorage.setItem("products", JSON.stringify(productsDB));

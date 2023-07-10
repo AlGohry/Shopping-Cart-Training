@@ -8,7 +8,7 @@ let productsDB = [
     prod_category: "Office Chairs",
     prod_date: "December 16, 2019",
     prod_price: "$597.66",
-    prod_quantity: "5",
+    prod_quantity: 1,
     prod_status: "Active",
   },
   {
@@ -18,7 +18,7 @@ let productsDB = [
     prod_category: "Wooden Chairs",
     prod_date: "December 16, 2003",
     prod_price: "$59",
-    prod_quantity: "90",
+    prod_quantity: 1,
     prod_status: "Deactive",
   },
   {
@@ -28,7 +28,7 @@ let productsDB = [
     prod_category: "Man cloths",
     prod_date: "October 16, 2010",
     prod_price: "$12.00",
-    prod_quantity: "222",
+    prod_quantity: 1,
     prod_status: "Active",
   },
   {
@@ -38,7 +38,7 @@ let productsDB = [
     prod_category: "Man cloths",
     prod_date: "October 16, 2018",
     prod_price: "$14.99",
-    prod_quantity: "111",
+    prod_quantity: 1,
     prod_status: "Active",
   },
 ];

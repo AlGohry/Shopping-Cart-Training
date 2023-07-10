@@ -3,14 +3,14 @@ let productsDiv = document.getElementById("products");
 let product_name = document.querySelector(".notification .prod-name strong");
 let product_img = document.querySelector(".media .prod-imageUrl");
 let badgeCart = document.querySelector(".badge-cart");
-let cartEmptyMsg = document.getElementById("cart-empty-msg");
+let cartEmptyMsg = document.querySelector(".cart-empty-msg");
 let shoppingCart = document.getElementById("shopping-cart");
 let totalCart = document.querySelectorAll(".notification");
-let products = JSON.parse(localStorage.getItem('products'));
+let products = JSON.parse(localStorage.getItem("products"));
 
 let selected_list = [];
 
-// View products when opening the page 
+// View products when opening the page
 (function drawProductsUi() {
   let productsUi = products.map((item) => {
     return `
@@ -55,14 +55,28 @@ let selected_list = [];
 })();
 
 let addedItem = [];
+let allItems = [];
 
 // Add to Cart
 function addedToCart(id) {
   // Check for an existing username?
   if (localStorage.getItem("username")) {
     let selected_item = products.find((item) => item.id === id);
-    selected_list.push(selected_item);
-    cartEmptyMsg.style.display = "none";
+
+    let item = allItems.find((i) => i.id === selected_item.id);
+
+    if (item) {
+      selected_item.prod_quantity += 1;
+    } else {
+      allItems.push(selected_item);
+    }
+
+    allItems.forEach((item) => {
+      if (!selected_list.includes(item)) {
+        selected_list.push(selected_item);
+      }
+    });
+
     let putProductInCart = selected_list.map((item) => {
       return `
     <li class="notification">
@@ -77,14 +91,16 @@ function addedToCart(id) {
               10 min
             </span>
           </p>
-          <p>Category: ${item.prod_category}</p>
-        </div>
+          <p><strong> Category: </strong> ${item.prod_category}</p>
+          <p><strong> Quantity: </strong> ${item.prod_quantity}</p>
+      </div>
       </div>
     </li>
     `;
     });
     shoppingCart.innerHTML = putProductInCart;
-    addedItem=[...addedItem, selected_item];
+
+    addedItem = [...addedItem, selected_item];
     localStorage.setItem('productsInCart', JSON.stringify(addedItem));
     badgeCart.innerHTML = selected_list.length;
   } else {
@@ -112,7 +128,8 @@ function addedToCart(id) {
               10 min
             </span>
           </p>
-          <p>Category: ${item.prod_category}</p>
+          <p><strong> Category: </strong> ${item.prod_category}</p>
+          <p><strong> Quantity: </strong> ${item.prod_quantity}</p>
         </div>
       </div>
     </li>

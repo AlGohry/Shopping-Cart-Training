@@ -81,8 +81,9 @@ function drawCartProductsUi(allProducts = []) {
                 10 min
               </span>
             </p>
-            <p>Category: ${item.prod_category}</p>
-          </div>
+            <p><strong> Category: </strong> ${item.prod_category}</p>
+            <p><strong> Quantity: </strong> ${item.prod_quantity}</p>
+            </div>
         </div>
       </li>
         `;
